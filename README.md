@@ -42,7 +42,7 @@ This repository makes liberal use of code from [open_brats2020](https://github.c
 ## References
 * [BraTS 2021](http://braintumorsegmentation.org/)
 
-## Citing VT-UNet
+## Citing our work
 ```bash
     
 ```
