@@ -1,0 +1,7 @@
+SimpleITK
+sklearn
+tensorboard
+tensorboardX
+pyyaml
+pandas
+matplotlib
