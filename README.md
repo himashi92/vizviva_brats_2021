@@ -1,4 +1,4 @@
-# Vizviva BRATS 2021 Solution
+# BRATS 2021 Solution For Segmentation Task
 This repo contains the supported pytorch code and configuration files to reproduce 3D medical image segmentaion results of [Reciprocal Adversarial Learning for Brain Tumor Segmentation: A Solution to BraTS Challenge 2021 Segmentation Task](https://arxiv.org/pdf/2201.03777.pdf). 
 
 
