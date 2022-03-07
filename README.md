@@ -36,6 +36,8 @@ python train.py --num_classes 3 --epochs 350
 ```bash
 python test.py --num_classes 3
 ```
+## Pre-trained Model
+https://drive.google.com/file/d/11YmBPePPmnqE9W40ZqschovmiPx6lZ-2/view?usp=sharing
 
 ## Acknowledgements
 This repository makes liberal use of code from [open_brats2020](https://github.com/lescientifik/open_brats2020).
