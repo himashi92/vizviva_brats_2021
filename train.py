@@ -26,7 +26,7 @@ from utils import AverageMeter, ProgressMeter, save_checkpoint, reload_ckpt_bis,
     count_parameters, save_metrics, save_args
 
 parser = argparse.ArgumentParser(description='BRATS 2021 Training')
-parser.add_argument('-a', '--arch', metavar='ARCH', default='Unet_deep', help='model architecture (default: Unet)')
+parser.add_argument('-a', '--arch', metavar='ARCH', default='Unet', help='model architecture (default: Unet)')
 parser.add_argument('--width', default=32, help='base number of features for Unet (x2 per downsampling)', type=int)
 # DO not use data_aug argument this argument!!
 parser.add_argument('-j', '--workers', default=2, type=int, metavar='N',
