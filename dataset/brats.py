@@ -3,6 +3,7 @@ import pathlib
 import SimpleITK as sitk
 import numpy as np
 import torch
+from sklearn.model_selection import KFold
 from torch.utils.data.dataset import Dataset
 import os
 from config import get_brats_folder
@@ -79,29 +80,6 @@ def get_datasets_val(no_seg=True, on="val", normalisation="minmax", input_dir="/
 
     return bench_dataset
 
-
-def get_datasets(seed, no_seg=False, on="train", full=False, fold_number=0, normalisation="minmax"):
-    base_folder = pathlib.Path(get_brats_folder(on)).resolve()
-    print(base_folder)
-    assert base_folder.exists()
-    patients_dir = sorted([x for x in base_folder.iterdir() if x.is_dir()])
-
-    kfold = KFold(10, shuffle=True, random_state=seed)
-    splits = list(kfold.split(patients_dir))
-    train_idx, val_idx = splits[fold_number]
-    print("first idx of train", train_idx[0])
-    print("first idx of test", val_idx[0])
-    train = [patients_dir[i] for i in train_idx]
-    val = [patients_dir[i] for i in val_idx]
-    # return patients_dir
-    train_dataset = Brats(train, training=True,
-                          normalisation=normalisation)
-    val_dataset = Brats(val, training=False, data_aug=False,
-                        normalisation=normalisation)
-    bench_dataset = Brats(val, training=False, benchmarking=True,
-                          normalisation=normalisation)
-
-    return train_dataset, val_dataset, bench_dataset
 
 
 
