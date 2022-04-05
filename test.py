@@ -88,9 +88,9 @@ def main(args):
 
     # Give the folder path of best model
     args.exp_name = "brats_2021".format(args.lambda_adv, args.lambda_vat)
-    args.save_folder_1 = pathlib.Path(f"./runs/{args.exp_name}/model_1")
+    args.save_folder = pathlib.Path(f"./runs/{args.exp_name}/model_1")
 
-    args.seg_folder = args.save_folder_1 / "segs"
+    args.seg_folder = args.save_folder / "segs"
     args.seg_folder.mkdir(parents=True, exist_ok=True)
 
     # Create model
@@ -106,7 +106,7 @@ def main(args):
 
     print("Bench Test dataset number of batch:", len(bench_loader))
 
-    reload_ckpt_bis(f'{str(args.save_folder_1)}/model_best.pth.tar', model_1)
+    reload_ckpt_bis(f'{str(args.save_folder)}/model_best.pth.tar', model_1)
 
     generate_segmentations(bench_loader, model_1, args)
 

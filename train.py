@@ -66,13 +66,13 @@ def main(args):
     print(f"Working with {ngpus} GPUs")
 
     args.exp_name = "brats_2021".format(args.lambda_adv, args.lambda_vat)
-    args.save_folder_1 = pathlib.Path(f"./runs/{args.exp_name}/model_1")
-    args.save_folder_1.mkdir(parents=True, exist_ok=True)
-    args.seg_folder_1 = args.save_folder_1 / "segs"
-    args.seg_folder_1.mkdir(parents=True, exist_ok=True)
-    args.save_folder_1 = args.save_folder_1.resolve()
+    args.save_folder = pathlib.Path(f"./runs/{args.exp_name}/model_1")
+    args.save_folder.mkdir(parents=True, exist_ok=True)
+    args.seg_folder = args.save_folder / "segs"
+    args.seg_folder.mkdir(parents=True, exist_ok=True)
+    args.save_folder = args.save_folder.resolve()
     save_args(args)
-    t_writer_1 = SummaryWriter(str(args.save_folder_1))
+    t_writer_1 = SummaryWriter(str(args.save_folder))
 
     # Create model
     print(f"Creating {args.arch}")
@@ -88,7 +88,7 @@ def main(args):
 
     model_1 = model_1.cuda()
 
-    model_file = args.save_folder_1 / "model.txt"
+    model_file = args.save_folder / "model.txt"
     with model_file.open("w") as f:
         print(model_1, file=f)
 
@@ -227,7 +227,7 @@ def main(args):
             # Validate at the end of epoch every val step
             if (epoch + 1) % args.val == 0:
                 validation_loss_1 = step(val_loader, model_1, criterion, metric, epoch, t_writer_1,
-                                             save_folder=args.save_folder_1,
+                                             save_folder=args.save_folder,
                                              patients_perf=patients_perf)
 
                 if scheduler is not None:
@@ -245,7 +245,7 @@ def main(args):
                             optimizer=optimizer.state_dict(),
                             scheduler=scheduler.state_dict(),
                         ),
-                        save_folder=args.save_folder_1, )
+                        save_folder=args.save_folder, )
 
                 ts = time.perf_counter()
                 print(f"Val epoch done in {ts - te} s")
@@ -258,8 +258,8 @@ def main(args):
     try:
         df_individual_perf = pd.DataFrame.from_records(patients_perf)
         print(df_individual_perf)
-        df_individual_perf.to_csv(f'{str(args.save_folder_1)}/patients_indiv_perf.csv')
-        reload_ckpt_bis(f'{str(args.save_folder_1)}/model_best.pth.tar', model_1)
+        df_individual_perf.to_csv(f'{str(args.save_folder)}/patients_indiv_perf.csv')
+        reload_ckpt_bis(f'{str(args.save_folder)}/model_best.pth.tar', model_1)
         torch.cuda.empty_cache()
     except KeyboardInterrupt:
         print("Stopping right now!")
