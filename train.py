@@ -15,7 +15,7 @@ from torch.utils.tensorboard import SummaryWriter
 
 import model
 from dataset.batch_utils import determinist_collate
-from dataset.brats import get_datasets
+from dataset.brats_train import get_datasets
 from learning_rate.poly_lr import poly_lr
 from loss import EDiceLoss
 from loss.adversarial_loss_gen import adv_loss_critic_v1
@@ -58,6 +58,9 @@ parser.add_argument('--warm_restart', action='store_true', help='use scheduler w
 parser.add_argument('--full', action='store_true', help='Fit the network on the full training set')
 parser.add_argument('--lambda_adv', type=float, default=0.3, help='scalar constant adversarial loss')
 parser.add_argument('--lambda_vat', type=float, default=0.2, help='scalar constant vat loss')
+
+torch.backends.cudnn.benchmark = True
+torch.backends.cudnn.enabled = False
 
 
 def main(args):
