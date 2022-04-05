@@ -59,9 +59,6 @@ parser.add_argument('--full', action='store_true', help='Fit the network on the 
 parser.add_argument('--lambda_adv', type=float, default=0.3, help='scalar constant adversarial loss')
 parser.add_argument('--lambda_vat', type=float, default=0.2, help='scalar constant vat loss')
 
-torch.backends.cudnn.benchmark = True
-torch.backends.cudnn.enabled = False
-
 
 def main(args):
     # setup
