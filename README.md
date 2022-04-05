@@ -29,12 +29,12 @@ Prepare an environment with python=3.8, and then run the command "pip install -r
 ## Train/Test
 - Train : Run the train script on BraTS 2021 Training Dataset with Base model Configurations. 
 ```bash
-python train.py --num_classes 3 --epochs 350
+python train.py --epochs 350
 ```
 
 - Test : Run the test script on BraTS 2021 Training Dataset. 
 ```bash
-python test.py --num_classes 3
+python test.py
 ```
 ## Pre-trained Model
 https://drive.google.com/file/d/11YmBPePPmnqE9W40ZqschovmiPx6lZ-2/view?usp=sharing
