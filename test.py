@@ -87,7 +87,7 @@ def main(args):
     print(f"Working with {ngpus} GPUs")
 
     # Give the folder path of best model
-    args.exp_name = "brats_2021".format(args.lambda_adv, args.lambda_vat)
+    args.exp_name = "brats_2021"
     args.save_folder = pathlib.Path(f"./runs/{args.exp_name}/model_1")
 
     args.seg_folder = args.save_folder / "segs"
