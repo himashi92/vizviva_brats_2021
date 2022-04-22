@@ -110,5 +110,22 @@ def get_datasets(seed, no_seg=False, on="train", full=False, fold_number=0, norm
 
     return train_dataset, val_dataset, bench_dataset
 
+def get_datasets_val(seed, no_seg=False, on="train", full=False, fold_number=0, normalisation="minmax"):
+    base_folder = pathlib.Path(get_brats_folder(on)).resolve()
+    print(base_folder)
+    assert base_folder.exists()
+    patients_dir = sorted([x for x in base_folder.iterdir() if x.is_dir()])
 
+    kfold = KFold(10, shuffle=True, random_state=seed)
+    splits = list(kfold.split(patients_dir))
+    train_idx, val_idx = splits[fold_number]
+    print("first idx of train", train_idx[0])
+    print("first idx of test", val_idx[0])
+    train = [patients_dir[i] for i in train_idx]
+    val = [patients_dir[i] for i in val_idx]
+    
+    bench_dataset = Brats(val, training=False, benchmarking=True,
+                          normalisation=normalisation)
+
+    return bench_dataset
 
