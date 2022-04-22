@@ -21,9 +21,9 @@ from utils import reload_ckpt_bis, count_parameters
 
 parser = argparse.ArgumentParser(description='Brats validation and testing dataset inference')
 parser.add_argument('-a', '--arch', metavar='ARCH', default='Unet', help='model architecture (default: Unet)')
-parser.add_argument('--norm_layer', default='inorm')
+parser.add_argument('--norm_layer', default='group')
 parser.add_argument('--dropout', type=float, help="amount of dropout to use", default=0.)
-parser.add_argument('--width', default=32, help='base number of features for Unet (x2 per downsampling)', type=int)
+parser.add_argument('--width', default=48, help='base number of features for Unet (x2 per downsampling)', type=int)
 parser.add_argument('--fold', default=0, type=int, help="Split number (0 to 4)")
 parser.add_argument('-j', '--workers', default=1, type=int, metavar='N',
                     help='number of data loading workers (default: 2).')
