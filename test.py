@@ -54,7 +54,7 @@ def generate_segmentations(data_loader, model, args):
                 pre_segs = model(inputs)
                 pre_segs = torch.sigmoid(pre_segs)
 
-        pre_segs = AsDiscrete()
+        
         # remove pads
         maxz, maxy, maxx = pre_segs.size(2) - pads[0], pre_segs.size(3) - pads[1], pre_segs.size(4) - pads[2]
         pre_segs = pre_segs[:, :, 0:maxz, 0:maxy, 0:maxx].cpu()
