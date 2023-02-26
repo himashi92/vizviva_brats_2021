@@ -47,15 +47,14 @@ This repository makes liberal use of code from [open_brats2020](https://github.c
 
 ## Citing our work
 ```bash
-   @misc{peiris2022reciprocal,
-      title={Reciprocal Adversarial Learning for Brain Tumor Segmentation: A Solution to BraTS Challenge 2021 Segmentation Task}, 
-      author={Himashi Peiris and Zhaolin Chen and Gary Egan and Mehrtash Harandi},
+    @inproceedings{peiris2022reciprocal,
+      title={Reciprocal adversarial learning for brain tumor segmentation: a solution to BraTS challenge 2021 segmentation task},
+      author={Peiris, Himashi and Chen, Zhaolin and Egan, Gary and Harandi, Mehrtash},
+      booktitle={Brainlesion: Glioma, Multiple Sclerosis, Stroke and Traumatic Brain Injuries: 7th International Workshop, BrainLes 2021, Held in Conjunction with MICCAI 2021, Virtual Event, September 27, 2021, Revised Selected Papers, Part I},
+      pages={171--181},
       year={2022},
-      eprint={2201.03777},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV}
-   }
-    
+      organization={Springer}
+    } 
 ```
 
 
